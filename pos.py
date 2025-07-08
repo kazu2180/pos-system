@@ -132,3 +132,10 @@ with tab2:
                 empty_df = pd.DataFrame(columns=["商品名", "販売個数", "単価", "合計金額"])
                 empty_df.to_excel(summary_file, index=False)
                 st.warning("販売記録を初期化しました。")
+
+with open(summary_file, "rb") as f:
+    st.download_button(
+        label="販売サマリーをダウンロード",
+        data=f,
+        file_name=os.path.basename(summary_file),
+        mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet")
