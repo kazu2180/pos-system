@@ -133,9 +133,30 @@ with tab2:
                 empty_df.to_excel(summary_file, index=False)
                 st.warning("販売記録を初期化しました。")
 
-with open(summary_file, "rb") as f:
-    st.download_button(
-        label="販売サマリーをダウンロード",
-        data=f,
-        file_name=os.path.basename(summary_file),
-        mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet")
+import os
+
+st.markdown("### 📦 一日分の販売ファイルダウンロード")
+
+# サマリーファイルのダウンロードボタン
+if os.path.exists(summary_file):
+    with open(summary_file, "rb") as f:
+        st.download_button(
+            label="📤 販売サマリーをダウンロード",
+            data=f,
+            file_name=os.path.basename(summary_file),
+            mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+        )
+else:
+    st.info("販売サマリーはまだ保存されていません。")
+
+# 販売ログファイルのダウンロードボタン
+if os.path.exists(log_file):
+    with open(log_file, "rb") as f:
+        st.download_button(
+            label="📤 販売ログをダウンロード",
+            data=f,
+            file_name=os.path.basename(log_file),
+            mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+        )
+else:
+    st.info("販売ログがまだ作成されていません。")
