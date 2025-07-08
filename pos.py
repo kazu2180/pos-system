@@ -125,9 +125,9 @@ with tab2:
                     st.error("販売済みの商品は削除できません。")
 
      # 🔄 販売リセット
-with st.expander("🔄 販売記録リセット"):
-    if st.button("リセット", key="reset_sales"):
-        for i in sales:
+     with st.expander("🔄 販売記録リセット"):
+     if st.button("リセット", key="reset_sales"):
+         for i in sales:
             sales[i] = 0
         empty_df = pd.DataFrame(columns=["商品名", "販売個数", "単価", "合計金額"])
         empty_df.to_excel(summary_file, index=False)
