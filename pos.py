@@ -2,8 +2,8 @@ import streamlit as st
 import requests
 
 # ✅ Webhook URL（Google Apps Scriptから取得した「ウェブアプリ」URLをここに貼る）
-LOG_URL = "https://script.google.com/macros/s/AKfycbx1L46HWSBxLzPibMVo1_ClstJjX1xRCYcF-pHeIUe9eOqsXMLz-hm3PI5D85y5YcRZ_A/exec"
-SUMMARY_URL = "https://script.google.com/macros/s/AKfycby_G53mROoJ4WZeTnsv6jvSskAEr8BDgwlyiZxw2EAiOs7oqrR_HiATOgno5OZ9aWbJ/exec"
+LOG_URL = "https://script.google.com/macros/s/AKfycbxo3rEbi_Z0s6HmXd_m2dJggEYRTdAWEpwFCgpCfre59qWrbcVmhzGgKaLMDdZIqlDv/exec"
+SUMMARY_URL = "https://script.google.com/macros/s/AKfycbwnEq8ZRjYRp754GIzOLJ05h_gxsdgRqVo83qds7j_yjaujaZVI_KknIm54AT68_q9N/exec"
 
 # 🎯 UI：販売画面
 st.title("🍰 文化祭POSシステム")
