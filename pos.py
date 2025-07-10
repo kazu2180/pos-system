@@ -1,28 +1,15 @@
 import streamlit as st
+from streamlit_gsheets import GSheetsConnection
 import pandas as pd
 from datetime import datetime
-from openpyxl import load_workbook
-import os
 
-# === 初期設定 ===
-folder = "./pos"
-os.makedirs(folder, exist_ok=True)
-
-date_str = datetime.now().strftime("%Y-%m-%d")
-log_file = f"{folder}/sales_log_{date_str}.xlsx"
-summary_file = f"{folder}/sales_summary_{date_str}.xlsx"
-product_master_file = f"{folder}/product_master.xlsx"
-
-# === 商品マスターの読み込み（存在しなければ初期商品） ===
-try:
-    df_master = pd.read_excel(product_master_file)
-    items = dict(zip(df_master["商品名"], df_master["価格"]))
-except FileNotFoundError:
-    items = {"マドレーヌ": 300, "焼きそば": 250}
-    df_master = pd.DataFrame(list(items.items()), columns=["商品名", "価格"])
-    df_master.to_excel(product_master_file, index=False)
-
+# === 商品マスター初期設定 ===
+items = {"マドレーヌ": 300, "焼きそば": 250}
 sales = {i: 0 for i in items}
+
+# ✅ Google Sheets接続（事前にSecretsで設定）
+log_conn = st.connection("logsheet", type=GSheetsConnection)
+summary_conn = st.connection("summarysheet", type=GSheetsConnection)
 
 # === ページ構成 ===
 tab1, tab2 = st.tabs(["🛍️ 販売ページ", "🧑‍💼 管理ページ"])
@@ -31,67 +18,30 @@ tab1, tab2 = st.tabs(["🛍️ 販売ページ", "🧑‍💼 管理ページ"])
 with tab1:
     st.markdown("<h1 style='text-align:center;'>🎪 商品販売</h1>", unsafe_allow_html=True)
     item = st.selectbox("販売する商品を選んでください", list(items.keys()))
-    st.markdown("### 🔢 販売個数を入力してください")
     count = st.number_input("販売個数", min_value=1, value=1, step=1)
 
     if st.button("販売する"):
         price = items[item]
         total = price * count
-        sales[item] += count
         timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+        sales[item] += count
 
-        # ✅ ログ保存
+        # ✅ ログ記録（1行追加）
         log_df = pd.DataFrame([[timestamp, item, count, price, total]],
                               columns=["販売時刻", "商品名", "販売個数", "単価", "合計金額"])
+        log_conn.insert(log_df)
 
-        try:
-            book = load_workbook(log_file)
-            with pd.ExcelWriter(log_file, engine='openpyxl', mode='a', if_sheet_exists='overlay') as writer:
-                startrow = book["Sheet1"].max_row
-                log_df.to_excel(writer, startrow=startrow, index=False, header=False)
-        except FileNotFoundError:
-            log_df.to_excel(log_file, index=False)
-
-        # ✅ 集計保存（販売された商品だけ記録）
+        # ✅ サマリー記録（販売された商品のみ上書き保存）
         summary_records = []
         for i in items:
             if sales[i] > 0:
-                record = [i, sales[i], items[i], sales[i] * items[i]]
-                summary_records.append(record)
+                summary_records.append([i, sales[i], items[i], sales[i] * items[i]])
 
         summary_df = pd.DataFrame(summary_records, columns=["商品名", "販売個数", "単価", "合計金額"])
-        summary_df.to_excel(summary_file, index=False)
+        summary_conn.update(summary_df)
 
-        # ✅ 成功メッセージの表示
-        st.success(f"{item} を {count} 個販売しました！（合計 ¥{total}）")
-
-        # ログ保存
-        log_df = pd.DataFrame([[timestamp, item, count, price, total]],
-                              columns=["販売時刻", "商品名", "販売個数", "単価", "合計金額"])
-
-        try:
-            book = load_workbook(log_file)
-            with pd.ExcelWriter(log_file, engine='openpyxl', mode='a', if_sheet_exists='overlay') as writer:
-                startrow = book["Sheet1"].max_row
-                log_df.to_excel(writer, startrow=startrow, index=False, header=False)
-        except FileNotFoundError:
-            log_df.to_excel(log_file, index=False)
-
-st.write("🧾 現在の商品一覧:", items)
-st.write("📊 現在の販売数:", sales)
-
-# 集計保存（販売された商品だけを記録）
-summary_records = []
-
-for i in items:
-    if sales[i] > 0:  # 販売された商品だけ記録
-        record = [i, sales[i], items[i], sales[i]*items[i]]
-        summary_records.append(record)
-
-summary_df = pd.DataFrame(summary_records, columns=["商品名", "販売個数", "単価", "合計金額"])
-summary_df.to_excel(summary_file, index=False)
-
-# === 管理者ページ ===
+        # ✅ 成功メッセージ
+        st.success(f"{item} を {count} 個販売しました！（合計 ¥{total}）")# === 管理者ページ ===
 with tab2:
     st.markdown("<h1 style='text-align:center;'>🧑‍💼 管理者ページ</h1>", unsafe_allow_html=True)
     admin_code = st.text_input("パスコードを入力してください", type="password")
