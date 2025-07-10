@@ -1,0 +1,81 @@
+[connections.logsheet]
+type = "service_account"
+project_id = "jonanfukuokapossystem"
+private_key_id = "390e1299e4263997dd5cd66c3711b524e964f3b7"
+private_key = """-----BEGIN PRIVATE KEY-----
+MIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQC859lx/uxNbEuO
+nPLck3IcDLOd5wY60H/l0iR1uauDbl3aYgdALjrcC0/d6tCbts/f81UhA3rZA0HS
+rt8+NHdbZuAdaquCj9AlBMix9YMrCdQ7ToEQUKzvTGDr2rwufl6yvASWgHO+KR5I
+IKoxgDnUBDXnu2QlUxJgqSFCNxNrefQs6yAyLrhIrU+smsUIYfm5xJUNOpUGBGnp
+qrmhojOeKu2G8wkXNMGd692LY+SCDicbV4CEEhbty8xtKxstZk8yvO1KCujDWhms
+D/IHTsAwdimUQdoAWvGFpTGF7ZQMGdRbEcjvUsNvEuZEAkkDB+UMKOJDjnid5SH2
+NFvT/CX7AgMBAAECggEAEVwC/PlOsMy3YsskfEWmclJufR+6UFRRtIZrqE/gJYtS
+X5uri+fTq930QHHwKqcRkkRzub1uoBuvBFPimv5KS6F4Dev8B9r8ZzJ52PS1UZKt
+KKgNrziis7jinTn0GhetzyH9D/GM8Vgo+rrZuQPODKA4beuoB9AK+8v/DO0vwSwC
+6FBm3kF3o/gfU/fQyd3mJkSOLK3igK8ucDEeykF8Iqt4nFXvdoZUA6K3w1igLyDV
+CqpVdkHlTYGycl7TMM9qawsgufuR2DOSfcjh431rZOibN9RipUOVx5dvhHN10OJ6
+OlEyitb+YFl8I6Rs4oUKwEKkvqJLjIG2d20BBXEu8QKBgQDhza23wTE2AvYA6WcF
+C+R7r3RRTjKHu97u3eIMHtwmKN++j5gr7N8ClAyFHnES1d0vZWoUXUgxzBxHuBj9
+q95V+6G+s9px4ExHH3lT0CWf6ji7t6MjP2PYs5MkYd3VKb71KMwi2mRhSVaTTDin
+8D/vLPXDqCG4OGWAcdOxFLqD8QKBgQDWKvw8kTJOq9QdbdH46sG3P3s97xrKNdHy
+2683eTKkWjZHetllNiks/DJNeixJngkhjyUUj7lQjTUvOOqv6qA21M5hkcb3/cCJ
+Ou/wjrZnZXYmUyWnfMCkruhpLIV6uvsTs5qFPkoKhnzyPLtNl2gop7twrUazJIPc
+jcXhB/pEqwKBgBR5B4UfmQyinBddEiAdAexM7ijpBB/WYtIZgANFUQSMtCyc7Fkf
+MuES90eiiPICPfmsIkASbRdGwFGoWWu2h4QYOoQF3opwobnZGrEEsESdgeNTNRFf
+D/h336Fu1iQbktq7hjaqwmsnsRfN0102pTVUSDwjJFuFkX5h06W8kWShAoGBAITM
+IJ15tsT7XMpmt0TuY/G5hjSwF199IdLCD5KJLzKj0XZfIX/VppCDTLmn4OBBAw5x
+ER//wnvFI05Fr5gnFvMI33O2jbZl/MXa6r6x7z6LtkgrVHTXMSisX+YfOiEQ4fCk
+dFLcfdKq87zMlaOWF3rmDp7egrFAGhdfPWy8op2DAoGAbLh59ViDkOwNRR0KO1Gq
+EGzv++rL74EHJmk3UrwurxhE0msPy62+0mYrDw6botDHVAu+EVfIQwbCrRsVNMvc
+IVOHKO0folfLsN9vNX4q32BboxLEvdynqXUPW1VVFvbm6sQ6ahafEiJSoPDiN55J
+gmHAPNPOtEDNNDKl92vYO2E=
+-----END PRIVATE KEY-----"""
+client_email = "id-0427@jonanfukuokapossystem.iam.gserviceaccount.com"
+client_id = "100452829140291073744"
+auth_uri = "https://accounts.google.com/o/oauth2/auth"
+token_uri = "https://oauth2.googleapis.com/token"
+auth_provider_x509_cert_url = "https://www.googleapis.com/oauth2/v1/certs"
+client_x509_cert_url = "https://www.googleapis.com/robot/v1/metadata/x509/id-0427%40jonanfukuokapossystem.iam.gserviceaccount.com"
+spreadsheet = "https://docs.google.com/spreadsheets/d/1TxIn9VrOpazYxwEZqx6D134qGAuBNuwF9d_giD04fdU"
+worksheet = "販売ログ"
+
+[connections.summarysheet]
+type = "service_account"
+project_id = "jonanfukuokapossystem"
+private_key_id = "390e1299e4263997dd5cd66c3711b524e964f3b7"
+private_key = """-----BEGIN PRIVATE KEY-----
+MIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQC859lx/uxNbEuO
+nPLck3IcDLOd5wY60H/l0iR1uauDbl3aYgdALjrcC0/d6tCbts/f81UhA3rZA0HS
+rt8+NHdbZuAdaquCj9AlBMix9YMrCdQ7ToEQUKzvTGDr2rwufl6yvASWgHO+KR5I
+IKoxgDnUBDXnu2QlUxJgqSFCNxNrefQs6yAyLrhIrU+smsUIYfm5xJUNOpUGBGnp
+qrmhojOeKu2G8wkXNMGd692LY+SCDicbV4CEEhbty8xtKxstZk8yvO1KCujDWhms
+D/IHTsAwdimUQdoAWvGFpTGF7ZQMGdRbEcjvUsNvEuZEAkkDB+UMKOJDjnid5SH2
+NFvT/CX7AgMBAAECggEAEVwC/PlOsMy3YsskfEWmclJufR+6UFRRtIZrqE/gJYtS
+X5uri+fTq930QHHwKqcRkkRzub1uoBuvBFPimv5KS6F4Dev8B9r8ZzJ52PS1UZKt
+KKgNrziis7jinTn0GhetzyH9D/GM8Vgo+rrZuQPODKA4beuoB9AK+8v/DO0vwSwC
+6FBm3kF3o/gfU/fQyd3mJkSOLK3igK8ucDEeykF8Iqt4nFXvdoZUA6K3w1igLyDV
+CqpVdkHlTYGycl7TMM9qawsgufuR2DOSfcjh431rZOibN9RipUOVx5dvhHN10OJ6
+OlEyitb+YFl8I6Rs4oUKwEKkvqJLjIG2d20BBXEu8QKBgQDhza23wTE2AvYA6WcF
+C+R7r3RRTjKHu97u3eIMHtwmKN++j5gr7N8ClAyFHnES1d0vZWoUXUgxzBxHuBj9
+q95V+6G+s9px4ExHH3lT0CWf6ji7t6MjP2PYs5MkYd3VKb71KMwi2mRhSVaTTDin
+8D/vLPXDqCG4OGWAcdOxFLqD8QKBgQDWKvw8kTJOq9QdbdH46sG3P3s97xrKNdHy
+2683eTKkWjZHetllNiks/DJNeixJngkhjyUUj7lQjTUvOOqv6qA21M5hkcb3/cCJ
+Ou/wjrZnZXYmUyWnfMCkruhpLIV6uvsTs5qFPkoKhnzyPLtNl2gop7twrUazJIPc
+jcXhB/pEqwKBgBR5B4UfmQyinBddEiAdAexM7ijpBB/WYtIZgANFUQSMtCyc7Fkf
+MuES90eiiPICPfmsIkASbRdGwFGoWWu2h4QYOoQF3opwobnZGrEEsESdgeNTNRFf
+D/h336Fu1iQbktq7hjaqwmsnsRfN0102pTVUSDwjJFuFkX5h06W8kWShAoGBAITM
+IJ15tsT7XMpmt0TuY/G5hjSwF199IdLCD5KJLzKj0XZfIX/VppCDTLmn4OBBAw5x
+ER//wnvFI05Fr5gnFvMI33O2jbZl/MXa6r6x7z6LtkgrVHTXMSisX+YfOiEQ4fCk
+dFLcfdKq87zMlaOWF3rmDp7egrFAGhdfPWy8op2DAoGAbLh59ViDkOwNRR0KO1Gq
+EGzv++rL74EHJmk3UrwurxhE0msPy62+0mYrDw6botDHVAu+EVfIQwbCrRsVNMvc
+IVOHKO0folfLsN9vNX4q32BboxLEvdynqXUPW1VVFvbm6sQ6ahafEiJSoPDiN55J
+gmHAPNPOtEDNNDKl92vYO2E=
+-----END PRIVATE KEY-----"""
+client_email = "id-0427@jonanfukuokapossystem.iam.gserviceaccount.com"
+client_id = "100452829140291073744"
+auth_uri = "https://accounts.google.com/o/oauth2/auth"
+token_uri = "https://oauth2.googleapis.com/token"
+auth_provider_x509_cert_url = "https://www.googleapis.com/oauth2/v1/certs"
+client_x509_cert_url = "https://www.googleapis.com/robot/v1/metadata/x509/id-0427%40jonanfukuokapossystem.iam.gserviceaccount.com"
+spreadsheet = "https://docs.google.com/spreadsheets/d/1OOlTLG6h0zX0Cmdx5Kww4-_8-0QkfdTDdDMn7pbI4M0"
+worksheet = "販売サマリー"
