@@ -1,40 +1,40 @@
 import streamlit as st
 import requests
 
-# Webhook URL（Google Apps Scriptで公開した2つのURLを貼る）
-LOG_URL = "https://script.google.com/macros/s/xxxxxxxxxxxxxxxxxxxxxxxxxxxx/exec"
-SUMMARY_URL = "https://script.google.com/macros/s/yyyyyyyyyyyyyyyyyyyyyyyyyyyy/exec"
+# 🚀 Webhook URL（それぞれの Google Apps Script の「ウェブアプリ」として公開したURLを貼る）
+LOG_URL = "https://script.google.com/macros/s/XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX/exec"
+SUMMARY_URL = "https://script.google.com/macros/s/YYYYYYYYYYYYYYYYYYYYYYYYYY/exec"
 
-# UI
+# 🎯 Streamlit UI
 st.title("🍰 文化祭POSシステム")
 
 item = st.selectbox("商品を選択", ["マドレーヌ", "クッキー", "パウンドケーキ"])
-quantity = st.number_input("数量を入力", min_value=1, step=1)
+quantity = st.number_input("数量", min_value=1, step=1)
 submit = st.button("販売する")
 
+# ✅ ボタンが押されたときの処理
 if submit:
     payload = {
         "item": item,
         "quantity": quantity
     }
 
-    # Webhook①：販売ログに記録
-    r1 = requests.post(LOG_URL, json=payload)
+    try:
+        # 🌐 WebhookへPOST
+        r1 = requests.post(LOG_URL, json=payload)
+        r2 = requests.post(SUMMARY_URL, json=payload)
 
-    # Webhook②：販売サマリーに集計記録
-    r2 = requests.post(SUMMARY_URL, json=payload)
+        # 🧾 結果確認
+        st.write("📜 販売ログからの応答:", r1.text)
+        st.write("📊 サマリーからの応答:", r2.text)
 
-    # 結果表示
-    if r1.text.startswith("Success") and r2.text.startswith("Success"):
-        st.success(f"{item} を {quantity} 個販売しました 📡")
-    else:
-        st.error("販売の記録または集計に失敗しました")
+        if r1.text.startswith("Success") and r2.text.startswith("Success"):
+            st.success(f"{item} を {quantity} 個販売しました！記録完了 📡")
+        else:
+            st.error("販売の記録または集計に失敗しました 🚨")
 
-r1 = requests.post(LOG_URL, json=payload)
-r2 = requests.post(SUMMARY_URL, json=payload)
-
-st.write("Log response:", r1.text)
-st.write("Summary response:", r2.text)
+    except Exception as e:
+        st.error(f"通信エラーが発生しました: {e}")
 
 
 LOG_URL = "https://script.google.com/macros/s/AKfycbzPi1ufKS6svN6rxirlbJQpsfjzdgbVSvDeWrUfO3VOFPZpnsWQ_rTTbVEzqYOBZtXxPw/exec"  # ←販売ログWebhook
