@@ -23,7 +23,7 @@ def save_sales_log(item, quantity):
     else:
         df = new_row
 
-    df.to_csv(log_file, index=False)
+    df.to_csv(log_file, index=False, encoding="utf_8_sig")
     return df
 
 # --- 販売サマリー更新 ---
@@ -38,7 +38,7 @@ def update_summary(item, quantity):
     else:
         df_sum = pd.concat([df_sum, pd.DataFrame([[item, quantity]], columns=["商品", "総数"])], ignore_index=True)
 
-    df_sum.to_csv(summary_file, index=False)
+    df_sum.to_csv(summary_file, index=False, encoding="utf_8_sig")
     return df_sum
 
 # --- UI ---
