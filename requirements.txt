@@ -1,3 +1,3 @@
 streamlit
 pandas
-streamlit_gsheets
+git+https://github.com/dhimmel/streamlit-gsheets.git
