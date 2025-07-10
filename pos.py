@@ -77,6 +77,9 @@ with tab1:
         except FileNotFoundError:
             log_df.to_excel(log_file, index=False)
 
+st.write("🧾 現在の商品一覧:", items)
+st.write("📊 現在の販売数:", sales)
+
 # 集計保存（販売された商品だけを記録）
 summary_records = []
 
