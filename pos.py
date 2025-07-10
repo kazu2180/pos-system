@@ -30,6 +30,12 @@ if submit:
     else:
         st.error("販売の記録または集計に失敗しました")
 
+r1 = requests.post(LOG_URL, json=payload)
+r2 = requests.post(SUMMARY_URL, json=payload)
+
+st.write("Log response:", r1.text)
+st.write("Summary response:", r2.text)
+
 
 LOG_URL = "https://script.google.com/macros/s/AKfycbzPi1ufKS6svN6rxirlbJQpsfjzdgbVSvDeWrUfO3VOFPZpnsWQ_rTTbVEzqYOBZtXxPw/exec"  # ←販売ログWebhook
 
