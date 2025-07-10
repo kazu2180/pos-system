@@ -40,6 +40,31 @@ with tab1:
         sales[item] += count
         timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
 
+        # ✅ ログ保存
+        log_df = pd.DataFrame([[timestamp, item, count, price, total]],
+                              columns=["販売時刻", "商品名", "販売個数", "単価", "合計金額"])
+
+        try:
+            book = load_workbook(log_file)
+            with pd.ExcelWriter(log_file, engine='openpyxl', mode='a', if_sheet_exists='overlay') as writer:
+                startrow = book["Sheet1"].max_row
+                log_df.to_excel(writer, startrow=startrow, index=False, header=False)
+        except FileNotFoundError:
+            log_df.to_excel(log_file, index=False)
+
+        # ✅ 集計保存（販売された商品だけ記録）
+        summary_records = []
+        for i in items:
+            if sales[i] > 0:
+                record = [i, sales[i], items[i], sales[i] * items[i]]
+                summary_records.append(record)
+
+        summary_df = pd.DataFrame(summary_records, columns=["商品名", "販売個数", "単価", "合計金額"])
+        summary_df.to_excel(summary_file, index=False)
+
+        # ✅ 成功メッセージの表示
+        st.success(f"{item} を {count} 個販売しました！（合計 ¥{total}）")
+
         # ログ保存
         log_df = pd.DataFrame([[timestamp, item, count, price, total]],
                               columns=["販売時刻", "商品名", "販売個数", "単価", "合計金額"])
@@ -62,8 +87,6 @@ for i in items:
 
 summary_df = pd.DataFrame(summary_records, columns=["商品名", "販売個数", "単価", "合計金額"])
 summary_df.to_excel(summary_file, index=False)
-       
-st.success(f"{item} を {count} 個販売しました！（合計 ¥{total}）")
 
 # === 管理者ページ ===
 with tab2:
