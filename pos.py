@@ -3,20 +3,20 @@ from streamlit_gsheets import GSheetsConnection
 import pandas as pd
 from datetime import datetime
 
-# === 商品マスター初期設定 ===
+# === 商品情報 ===
 items = {"マドレーヌ": 300, "焼きそば": 250}
 sales = {i: 0 for i in items}
 
-# ✅ Google Sheets接続
+# === Google Sheets接続 ===
 log_conn = st.connection("logsheet", type=GSheetsConnection)
 summary_conn = st.connection("summarysheet", type=GSheetsConnection)
 
-# === ページ構成 ===
-tab1, tab2 = st.tabs(["🛍️ 販売ページ", "🧑‍💼 管理ページ"])
+# === 画面切り替えラジオボタン ===
+page = st.radio("📋 ページを選択してください", ["販売ページ", "管理ページ"])
 
 # === 販売ページ ===
-with tab1:
-    st.markdown("<h1 style='text-align:center;'>🎪 商品販売</h1>", unsafe_allow_html=True)
+if page == "販売ページ":
+    st.markdown("## 🛍️ 商品販売")
     item = st.selectbox("販売する商品を選んでください", list(items.keys()))
     count = st.number_input("販売個数", min_value=1, value=1, step=1)
 
@@ -26,12 +26,12 @@ with tab1:
         timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
         sales[item] += count
 
-        # ✅ ログ保存（追記）
+        # ログ保存（追記）
         log_df = pd.DataFrame([[timestamp, item, count, price, total]],
                               columns=["販売時刻", "商品名", "販売個数", "単価", "合計金額"])
         log_conn.insert(log_df)
 
-        # ✅ サマリー保存（上書き）
+        # サマリー保存（上書き）
         summary_df = pd.DataFrame([
             [i, sales[i], items[i], sales[i]*items[i]] 
             for i in items if sales[i] > 0
@@ -41,9 +41,9 @@ with tab1:
         st.success(f"{item} を {count} 個販売しました！（合計 ¥{total}）")
 
 # === 管理ページ ===
-with tab2:
-    st.markdown("<h1 style='text-align:center;'>🧑‍💼 管理者ページ</h1>", unsafe_allow_html=True)
-    admin_code = st.text_input("パスコードを入力してください", type="password")
+elif page == "管理ページ":
+    st.markdown("## 🧑‍💼 管理者ページ")
+    admin_code = st.text_input("🔒 パスコードを入力してください", type="password")
 
     if admin_code != "kaz":
         st.warning("正しいパスコードを入力してください。")
