@@ -33,5 +33,4 @@ if submit:
 
 LOG_URL = "https://script.google.com/macros/s/AKfycbzPi1ufKS6svN6rxirlbJQpsfjzdgbVSvDeWrUfO3VOFPZpnsWQ_rTTbVEzqYOBZtXxPw/exec"  # ←販売ログWebhook
 
-SUMMARY_URL = "
-https://script.google.com/macros/s/AKfycbzwedHNBDz4D2_l-xoeK-iKlLoDuUD4ZSjhmFSY4PY9AJCRY629wenZMzIGNHV_1XLz/exec"  # ←販売サマリーWebhook
+SUMMARY_URL = "https://script.google.com/macros/s/AKfycbzwedHNBDz4D2_l-xoeK-iKlLoDuUD4ZSjhmFSY4PY9AJCRY629wenZMzIGNHV_1XLz/exec"  # ←販売サマリーWebhook
