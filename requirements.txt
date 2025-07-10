@@ -1,3 +1,4 @@
 streamlit
 pandas
-git+https://github.com/jonanfukuoka/streamlit-gsheets.git
+gspread
+google-auth
