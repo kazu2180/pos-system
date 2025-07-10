@@ -63,7 +63,7 @@ for i in items:
 summary_df = pd.DataFrame(summary_records, columns=["商品名", "販売個数", "単価", "合計金額"])
 summary_df.to_excel(summary_file, index=False)
        
- st.success(f"{item} を {count} 個販売しました！（合計 ¥{total}）")
+st.success(f"{item} を {count} 個販売しました！（合計 ¥{total}）")
 
 # === 管理者ページ ===
 with tab2:
